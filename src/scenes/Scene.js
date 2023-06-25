@@ -12,6 +12,7 @@ class Scene extends Object3D {
 
 		this.background = null;
 		this.environment = null;
+		this.environmentIntensity = null;
 		this.fog = null;
 
 		this.backgroundBlurriness = 0;
@@ -56,6 +57,16 @@ class Scene extends Object3D {
 
 		return data;
 
+	}
+
+
+	set enviornmentIntensity(value) {
+	   this.traverse(child => {
+	             		if(child.isMesh && child.material.isMeshStandardMaterial)
+			        {
+			            child.material.envMapIntensity = value
+			        }
+		})
 	}
 
 }
